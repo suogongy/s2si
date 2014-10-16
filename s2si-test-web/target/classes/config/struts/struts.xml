@@ -8,13 +8,19 @@
     <constant name="struts.objectFactory" value="spring" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="strtus2" extends="struts-default" namespace="/s2si">
-        <action name="*_man" class="com.ustc.s2si.crud.ManCrudAction" method="{1}">
-            <result type="freemarker">pages/man_list.ftl</result>
-        </action>
+    <package name="strtus2" namespace="/s2si" extends="struts-default">
 
         <action name="findAll" class="com.ustc.s2si.crud.ManListAction">
             <result>pages/list.ftl</result>
+        </action>
+        <action name="add_man" class="com.ustc.s2si.crud.ManCrudAction" method="add">
+            <result>test.jsp</result>
+        </action>
+        <action name="del_man" class="com.ustc.s2si.crud.ManCrudAction" method="del">
+            <result>test.jsp</result>
+        </action>
+        <action name="find_man" class="com.ustc.s2si.crud.ManCrudAction" method="find">
+            <result>pages/man_list.ftl</result>
         </action>
     </package>
 </struts>
