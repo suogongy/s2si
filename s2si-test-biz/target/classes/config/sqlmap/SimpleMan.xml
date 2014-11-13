@@ -31,27 +31,16 @@
         WHERE Id=#id#
     </select>
 
-    <insert id="add" parameterClass="map">
-        <![CDATA[
-		INSERT INTO Simple_Man
-		(
-            Name,
-            Age,
-            Sex
-		)
-		values
-		(
-		    #entity.name#,
-		    #entity.age#,
-		    #entity.sex#)
-		]]>
+    <insert id="add" parameterClass="SimpleMan">
+		INSERT INTO Simple_Man(Name,Age,Sex)
+		VALUES(#name#,#age#,#sex#)
         <selectKey resultClass="java.lang.Integer" keyProperty="id">
-            SELECT @@IDENTITY AS id
+            SELECT @@IDENTITY AS Id
         </selectKey>
     </insert>
 
-    <delete id="remove" parameterClass="map">
+    <delete id="remove" parameterClass="SimpleMan">
         DELETE FROM Simple_Man WHERE
-        Id=#entity.id#
+        Id=#id#
     </delete>
 </sqlMap>

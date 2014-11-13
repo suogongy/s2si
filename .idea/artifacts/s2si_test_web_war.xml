@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="s2si-test-web:war">
-    <output-path>$PROJECT_DIR$/s2si-test-web/target</output-path>
-    <root id="archive" name="s2si-test-web-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="s2si-test-web:war exploded" />
-    </root>
-  </artifact>
-</component>

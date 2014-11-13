@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Archetype Created Web Application</display-name>
 
+    <!-- 配置spring容器加载配置文件的位置 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:config/spring/appcontext-*.xml</param-value>
+    </context-param>
 
     <!--由Sprng载入的Log4j配置文件位置-->
     <context-param>
@@ -25,26 +30,25 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 配置spring容器加载配置文件的位置 -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:config/spring/appcontext-*.xml</param-value>
-    </context-param>
-    <!-- 加载spring容器的配置 -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>
             org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
         </filter-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>struts-default.xml,struts-plugin.xml,config/struts/struts.xml</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!-- 加载spring容器的配置 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

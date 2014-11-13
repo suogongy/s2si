@@ -22,8 +22,8 @@ public class SimpleManDaoImpl extends SqlMapClientDaoSupport implements SimpleMa
     }
 
     @Override
-    public int add(SimpleMan entity) {
-        return (Integer)getSqlMapClientTemplate().insert("add",entity);
+    public int  add(SimpleMan man) {
+        return (Integer)getSqlMapClientTemplate().insert("add",man);
     }
 
     @Override
