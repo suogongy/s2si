@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="SimpleMan">
+
+    <typeAlias alias="SimpleMan"
+               type="com.ustc.plan.entity.SimpleMan" />
+
+    <resultMap id="SimpleMan" class="SimpleMan">
+        <result column="Id" property="id" />
+        <result column="Name" property="name" />
+        <result column="Age" property="age" />
+        <result column="Sex" property="sex" />
+    </resultMap>
+
+    <sql id="sql_select">
+        SELECT
+          Id,
+          Name,
+          Age,
+          Sex
+        FROM Simple_Man
+    </sql>
+
+    <select id="findAll" resultMap="SimpleMan">
+        <include refid="sql_select"/>
+    </select>
+
+    <select id="findById" resultMap="SimpleMan"
+            parameterClass="java.lang.Integer">
+        <include refid="sql_select" />
+        WHERE Id=#id#
+    </select>
+
+    <insert id="add" parameterClass="SimpleMan">
+		INSERT INTO Simple_Man(Name,Age,Sex)
+		VALUES(#name#,#age#,#sex#)
+        <selectKey resultClass="java.lang.Integer" keyProperty="id">
+            SELECT @@IDENTITY AS Id
+        </selectKey>
+    </insert>
+
+    <delete id="remove" parameterClass="SimpleMan">
+        DELETE FROM Simple_Man WHERE
+        Id=#id#
+    </delete>
+</sqlMap>
